@@ -5,6 +5,7 @@ package com.Constants
   */
 object Constan {
   // Spark的上下文入口
-
+  val SPARK_APP_NAME_USER = "Teacher"
+  val SPARK_LOCAL = "local"
 
 }

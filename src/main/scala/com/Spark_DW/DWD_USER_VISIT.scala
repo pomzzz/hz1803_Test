@@ -8,7 +8,7 @@ import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.{SparkConf, SparkContext}
 import parquet.org.slf4j.LoggerFactory
 
-object DWD_DWS {
+object DWD_USER_VISIT {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setAppName(Constan.SPARK_APP_NAME_USER).setMaster(Constan.SPARK_LOCAL)
     val sc  = new SparkContext(conf)
@@ -31,7 +31,7 @@ object DWD_DWS {
       // 将数据出入mysql中
 //      df.write.mode("overwrite").jdbc(jdbcUrl,mysqlTableName,jdbcProp)
       // 将数据存入hive中
-//      df.write.mode(SaveMode.Overwrite).insertInto(hiveTableName)
+      df.write.mode(SaveMode.Overwrite).insertInto(hiveTableName)
     }
   }
 }

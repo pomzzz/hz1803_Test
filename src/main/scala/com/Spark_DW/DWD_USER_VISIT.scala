@@ -29,7 +29,7 @@ object DWD_USER_VISIT {
       val jdbcProp = JDBCUtils.getJDBCProp()._1
       val jdbcUrl = JDBCUtils.getJDBCProp()._2
       // 将数据出入mysql中
-      df.write.mode("overwrite").jdbc(jdbcUrl,mysqlTableName,jdbcProp)
+      df.coalesce(1).write.mode("append").jdbc(jdbcUrl,mysqlTableName,jdbcProp)
       // 将数据存入hive中
 //      df.write.mode(SaveMode.Overwrite).insertInto(hiveTableName)
     }

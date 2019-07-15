@@ -20,7 +20,7 @@ object DWD_USER_VISIT {
       LoggerFactory.getLogger("SparkLogger").debug("你提交的表名参数有问题，请重新设置！")
     }else {
 //      // 处理sql内部的占位符
-//      val finalSql = sql.replace("?",args(1))
+      val finalSql = sql.replace("?",args(1))
       // 运行sql
       val df = hiveContext.sql(sql)
       // 处理配置参数
@@ -29,9 +29,9 @@ object DWD_USER_VISIT {
       val jdbcProp = JDBCUtils.getJDBCProp()._1
       val jdbcUrl = JDBCUtils.getJDBCProp()._2
       // 将数据出入mysql中
-//      df.write.mode("overwrite").jdbc(jdbcUrl,mysqlTableName,jdbcProp)
+      df.write.mode("overwrite").jdbc(jdbcUrl,mysqlTableName,jdbcProp)
       // 将数据存入hive中
-      df.write.mode(SaveMode.Overwrite).insertInto(hiveTableName)
+//      df.write.mode(SaveMode.Overwrite).insertInto(hiveTableName)
     }
   }
 }
